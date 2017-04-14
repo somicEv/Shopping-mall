@@ -36,13 +36,13 @@
 	                <input class="easyui-textbox" type="text" name="barcode" data-options="validType:'length[1,30]'" />
 	            </td>
 	        </tr>
-	       <!--  <tr>
+	        <tr>
 	            <td>商品图片:</td>
 	            <td>
 	            	 <a href="javascript:void(0)" class="easyui-linkbutton picFileUpload">上传图片</a>
 	                 <input type="hidden" name="image"/>
 	            </td>
-	        </tr> -->
+	        </tr>
 	        <tr>
 	            <td>商品描述:</td>
 	            <td>
@@ -111,6 +111,7 @@
 		*/
 		//ajax的post方式提交表单
 		//$("#itemAddForm").serialize()将表单序列号为key-value形式的字符串
+		alert($("#itemAddForm").serialize());
 		$.post("/item/save",$("#itemAddForm").serialize(), function(data){
 			if(data.status == 200){
 				$.messager.alert('提示','新增商品成功!');

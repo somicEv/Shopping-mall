@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.taotao.commom.pojo.EasyUIDataGridResult;
-import com.taotao.commom.pojo.TaotaoResult;
+import com.taotao.common.pojo.EasyUIDataGridResult;
+import com.taotao.common.pojo.TaotaoResult;
 import com.taotao.common.utils.IDUtils;
 import com.taotao.mapper.TbItemDescMapper;
 import com.taotao.mapper.TbItemMapper;
@@ -20,62 +20,63 @@ import com.taotao.service.ItemService;
 
 /**
  * 商品管理Service
- * @author 浩瀚
- *
+ * <p>Title: ItemServiceImpl</p>
+ * <p>Description: </p>
+ * <p>Company: www.itcast.cn</p> 
+ * @version 1.0
  */
 @Service
 public class ItemServiceImpl implements ItemService {
-	
+
 	@Autowired
-	private TbItemMapper itemMapper; 
-	
+	private TbItemMapper itemMapper;
 	@Autowired
 	private TbItemDescMapper itemDescMapper;
 	
 	@Override
-	public TbItem getTbItem(long itemId) {
-		TbItem tbItem = itemMapper.selectByPrimaryKey(itemId);
-		return tbItem;
+	public TbItem getItemById(long itemId) {
+		TbItem item = itemMapper.selectByPrimaryKey(itemId);
+		return item;
 	}
 
 	@Override
 	public EasyUIDataGridResult getItemList(int page, int rows) {
-		// 设置查询条件
+		//设置分页信息
 		PageHelper.startPage(page, rows);
-		// 执行查询
-		TbItemExample tbItemExample = new TbItemExample();
-		List<TbItem> list = itemMapper.selectByExample(tbItemExample);
-		// 取查询结果
+		//执行查询
+		TbItemExample example = new TbItemExample();
+		List<TbItem> list = itemMapper.selectByExample(example);
+		//取查询结果
 		PageInfo<TbItem> pageInfo = new PageInfo<>(list);
-		// 封装对象
 		EasyUIDataGridResult result = new EasyUIDataGridResult();
-		result.setTotal(pageInfo.getTotal());
 		result.setRows(list);
+		result.setTotal(pageInfo.getTotal());
+		//返回结果
 		return result;
 	}
 
 	@Override
 	public TaotaoResult addItem(TbItem item, String desc) {
-		// 生成商品ID
+		//生成商品id
 		long itemId = IDUtils.genItemId();
-		// 补全item属性
+		//补全item的属性
 		item.setId(itemId);
-		// 商品状态：1-正常 2-下架 3-删除
-		item.setStatus((byte)1);
+		//商品状态，1-正常，2-下架，3-删除
+		item.setStatus((byte) 1);
 		item.setCreated(new Date());
 		item.setUpdated(new Date());
-		// 向商品表插入数据
+		//向商品表插入数据
 		itemMapper.insert(item);
-		// 创建商品描述表对应的pojo
+		//创建一个商品描述表对应的pojo
 		TbItemDesc itemDesc = new TbItemDesc();
-		// 补全pojo的属性
+		//补全pojo的属性
 		itemDesc.setItemId(itemId);
-		itemDesc.setCreated(new Date());
-		itemDesc.setUpdated(new Date());
 		itemDesc.setItemDesc(desc);
-		// 向商品描述表插入数据
+		itemDesc.setUpdated(new Date());
+		itemDesc.setCreated(new Date());
+		//向商品描述表插入数据
 		itemDescMapper.insert(itemDesc);
-		// 返回结果
+		//返回结果
 		return TaotaoResult.ok();
 	}
 

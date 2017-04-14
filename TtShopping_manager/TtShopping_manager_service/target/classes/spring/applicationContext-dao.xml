@@ -7,8 +7,10 @@
 	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
 	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd
 	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.2.xsd">
+	
+	<!-- 配置数据库连接池 -->
 	<!-- 加载配置文件 -->
-	<context:property-placeholder location="classpath:properties/*.properties" />
+	<context:property-placeholder location="classpath:properties/db.properties" />
 	<!-- 数据库连接池 -->
 	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
 		destroy-method="close">
@@ -19,6 +21,7 @@
 		<property name="maxActive" value="10" />
 		<property name="minIdle" value="5" />
 	</bean>
+	<!-- SqlSessionFactory -->
 	<!-- 让spring管理sqlsessionfactory 使用mybatis和spring整合包中的 -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<!-- 数据库连接池 -->
@@ -26,9 +29,9 @@
 		<!-- 加载mybatis的全局配置文件 -->
 		<property name="configLocation" value="classpath:mybatis/SqlMapConfig.xml" />
 	</bean>
-	
-	<!-- 配置mybatis包扫描 -->
+	<!-- Mapper映射文件的包扫描器 -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="basePackage" value="com.taotao.mapper" />
 	</bean>
+	
 </beans>

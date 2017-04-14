@@ -10,13 +10,13 @@
         <dependent-module archiveName="TtShopping_manager_pojo-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/TtShopping_manager_pojo/TtShopping_manager_pojo">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="TtShopping_manager_interface-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/TtShopping_manager_interface/TtShopping_manager_interface">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
         <dependent-module archiveName="TtShopping_common-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/TtShopping_common/TtShopping_common">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <property name="context-root" value="tbShopping_manager_service"/>
+        <dependent-module archiveName="TtShopping_manager_interface-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/TtShopping_manager_interface/TtShopping_manager_interface">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <property name="context-root" value="TtShopping_manager_service"/>
         <property name="java-output-path" value="/TtShopping_manager_service/target/classes"/>
     </wb-module>
 </project-modules>

@@ -1,66 +1,47 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <groupId>com.taotaoShopping</groupId>
-    <artifactId>TtShopping_manager</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-  </parent>
-  <artifactId>TtShopping_manager_service</artifactId>
-  <packaging>war</packaging>
-  <properties>
-  	<webVersion>3.0</webVersion>
-  </properties>
-  <dependencies>
-        <!-- spring的依赖 -->
-        <!-- Spring -->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-beans</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-webmvc</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-jdbc</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-aspects</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-jms</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context-support</artifactId>
-        </dependency>
-        <dependency>
-        	<groupId>com.taotaoShopping</groupId>
-        	<artifactId>TtShopping_manager_dao</artifactId>
-        	<version>0.0.1-SNAPSHOT</version>
-        </dependency>
-        <!-- JSP相关 -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.taotaoShopping</groupId>
+		<artifactId>TtShopping_parent</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<artifactId>TtShopping_manager_service</artifactId>
+	<packaging>war</packaging>
+	<properties>
+		<webVersion>3.1</webVersion>
+	</properties>
+	<dependencies>
+		<!-- Spring -->
 		<dependency>
-			<groupId>jstl</groupId>
-			<artifactId>jstl</artifactId>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>servlet-api</artifactId>
-			<scope>provided</scope>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>jsp-api</artifactId>
-			<scope>provided</scope>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aspects</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jms</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+		</dependency>
+		<!-- dubbo相关的jar包 -->
 		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>dubbo</artifactId>
@@ -84,16 +65,15 @@
 			<artifactId>zkclient</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>com.github.pagehelper</groupId>
-			<artifactId>pagehelper</artifactId>
+			<groupId>com.taotaoShopping</groupId>
+			<artifactId>TtShopping_manager_dao</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
-        <dependency>
-        	<groupId>com.taotaoShopping</groupId>
-        	<artifactId>TtShopping_manager_interface</artifactId>
-        	<version>0.0.1-SNAPSHOT</version>
-        </dependency>
-  </dependencies>
-  <build>
-      <finalName>tbShopping_manager_service</finalName>
-  </build>
+		<dependency>
+			<groupId>com.taotaoShopping</groupId>
+			<artifactId>TtShopping_manager_interface</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+	</dependencies>
+	
 </project>
