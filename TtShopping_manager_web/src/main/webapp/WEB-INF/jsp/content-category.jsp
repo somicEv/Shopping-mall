@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+ <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <div>
 	 <ul id="contentCategory" class="easyui-tree">
     </ul>
@@ -58,14 +58,16 @@ function menuHandler(item){
 		var _node = tree.tree('find',0);
 		tree.tree("select",_node.target).tree('beginEdit',_node.target);
 	}else if(item.name === "rename"){
-		tree.tree('beginEdit',node.target);
+		tree.tree('beginEdit',node.target);  
 	}else if(item.name === "delete"){
 		$.messager.confirm('确认','确定删除名为 '+node.text+' 的分类吗？',function(r){
 			if(r){
 				$.post("/content/category/delete/",{id:node.id},function(){
 					tree.tree("remove",node.target);
 				});	
+				
 			}
+			
 		});
 	}
 }

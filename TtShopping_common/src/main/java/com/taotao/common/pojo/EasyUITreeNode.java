@@ -2,10 +2,18 @@ package com.taotao.common.pojo;
 
 import java.io.Serializable;
 
+/**
+ * 用于EasyUI树形节点
+ * 返回json数据
+ * @author 浩瀚
+ *
+ */
 public class EasyUITreeNode implements Serializable{
-
+	// id
 	private long id;
+	// 信息
 	private String text;
+	// 状态
 	private String state;
 	public long getId() {
 		return id;

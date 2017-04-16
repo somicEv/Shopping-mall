@@ -15,11 +15,6 @@
   <dependencies>
   	<dependency>
   		<groupId>com.taotaoShopping</groupId>
-  		<artifactId>TtShopping_common</artifactId>
-  		<version>0.0.1-SNAPSHOT</version>
-  	</dependency>
-  	<dependency>
-  		<groupId>com.taotaoShopping</groupId>
   		<artifactId>TtShopping_manager_interface</artifactId>
   		<version>0.0.1-SNAPSHOT</version>
   	</dependency>
@@ -109,7 +104,17 @@
 			<groupId>com.github.pagehelper</groupId>
 			<artifactId>pagehelper</artifactId>
 		</dependency>
-	</dependencies>
+		<dependency>
+			<groupId>com.taotaoShopping</groupId>
+			<artifactId>TtShopping_content_interface</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.taotaoShopping</groupId>
+			<artifactId>TtShopping_common</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+  </dependencies>
 	<build>
 		<plugins>
 			<plugin>
@@ -117,7 +122,7 @@
 				<artifactId>tomcat7-maven-plugin</artifactId>
 				<configuration>
 					<path>/</path>
-					<port>8081</port>
+					<port>8082</port>
 				</configuration>
 			</plugin>
 		</plugins>
