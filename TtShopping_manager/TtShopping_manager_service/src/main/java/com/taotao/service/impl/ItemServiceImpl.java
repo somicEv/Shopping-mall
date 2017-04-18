@@ -5,12 +5,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.taotao.common.pojo.EasyUIDataGridResult;
-import com.taotao.common.pojo.EasyUITreeNode;
 import com.taotao.common.pojo.TaotaoResult;
 import com.taotao.common.utils.IDUtils;
 import com.taotao.mapper.TbItemDescMapper;
@@ -20,8 +18,6 @@ import com.taotao.pojo.TbItemDesc;
 import com.taotao.pojo.TbItemExample;
 import com.taotao.service.ItemService;
 
-
-
 /**
  * 商品管理Service
  * <p>Title: ItemServiceImpl</p>
@@ -30,7 +26,6 @@ import com.taotao.service.ItemService;
  * @version 1.0
  */
 @Service
-@Transactional(readOnly=false)
 public class ItemServiceImpl implements ItemService {
 
 	@Autowired
@@ -84,6 +79,5 @@ public class ItemServiceImpl implements ItemService {
 		//返回结果
 		return TaotaoResult.ok();
 	}
-
 
 }

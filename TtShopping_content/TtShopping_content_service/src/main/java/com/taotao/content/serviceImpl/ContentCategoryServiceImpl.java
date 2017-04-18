@@ -26,7 +26,7 @@ import com.taotao.pojo.TbContentCategoryExample.Criteria;
 public class ContentCategoryServiceImpl implements ContentCategoryService {
 	
 	@Autowired
-	private TbContentCategoryMapper categoryMapper;
+	private TbContentCategoryMapper tbContentCategoryMapper;
 	
 	@Override
 	// 根据parentId 查询子节点列表
@@ -37,7 +37,7 @@ public class ContentCategoryServiceImpl implements ContentCategoryService {
 		Criteria criteria = example.createCriteria();
 		criteria.andParentIdEqualTo(parentId);
 		// 执行查询
-		List<TbContentCategory> list = categoryMapper.selectByExample(example);
+		List<TbContentCategory> list = tbContentCategoryMapper.selectByExample(example);
 		// 转换结果
 		List<EasyUITreeNode> resultList = new ArrayList<>();
 		for (TbContentCategory tbContentCategory : list) {
@@ -68,14 +68,14 @@ public class ContentCategoryServiceImpl implements ContentCategoryService {
 		contentCategory.setCreated(new Date());
 		contentCategory.setUpdated(new Date());
 		// 插入到数据库
-		categoryMapper.insert(contentCategory);
+		tbContentCategoryMapper.insert(contentCategory);
 		// 判断父节点的状态
-		TbContentCategory parent = categoryMapper.selectByPrimaryKey(parentId);
+		TbContentCategory parent = tbContentCategoryMapper.selectByPrimaryKey(parentId);
 		if(!parent.getIsParent()){
 			// 如果父节点为叶子节点应该改为父节点
 			parent.setIsParent(true);
 			// 更新父节点
-			categoryMapper.updateByPrimaryKey(parent);
+			tbContentCategoryMapper.updateByPrimaryKey(parent);
 		}
 		// 返回结果
 		return TaotaoResult.ok(contentCategory);
@@ -84,67 +84,16 @@ public class ContentCategoryServiceImpl implements ContentCategoryService {
 	@Override
 	public void updateContentgory(Long id, String name) {
 		// 根据ID查询要更新的节点
-		TbContentCategory cateGory = categoryMapper.selectByPrimaryKey(id);
+		TbContentCategory cateGory = tbContentCategoryMapper.selectByPrimaryKey(id);
 		// 修改数据
 		cateGory.setName(name);
 		// 更新数据库
-		categoryMapper.updateByPrimaryKey(cateGory);
+		tbContentCategoryMapper.updateByPrimaryKey(cateGory);
 	}
 
 	@Override
-	/**
-	 *  1.判断是叶子节点还是父节点
-	 *  2.1如果为叶子节点，直接删除，并查询其父节点下是否还有其他子节点
-	 *  有则不改变父节点身份；没有则将父节点变为叶子节点
-	 *  2.2如果为父节点，（1）递归删除叶子节点 （2）如果下面有子节点，则不删除，没有就删除
-	 *  
-	 *  返回结果：
-	 *  	true -- 父节点下没有子节点/该节点为叶子节点,删除该节点
-	 *      false -- 父节点下有子节点，不删除节点，向用户提示信息
-	 */
-	public boolean deleteContentgory(Long id) {
-		// 根据ID获取节点
-		TbContentCategory cateGory = categoryMapper.selectByPrimaryKey(id);
-		// 判断是叶子节点还是父节点
-		if(!cateGory.getIsParent()){ // 说明为叶子节点
-			// 先获得父节点ID
-			Long parentId = cateGory.getParentId();
-			// 删除叶子节点
-			categoryMapper.deleteByPrimaryKey(id);
-			// 判断父节点是否有其他子节点
-			boolean result = parentHasChild(parentId);
-			if(!result){
-				TbContentCategory parentCateGory = categoryMapper.selectByPrimaryKey(parentId);
-				// 设置父节点为子节点
-				parentCateGory.setIsParent(false);
-				// 更新数据库
-				categoryMapper.updateByPrimaryKey(parentCateGory);
-			}
-			return true;
-		}else{ // 说明为父节点
-			boolean result = parentHasChild(id);
-			if(!result){ // 父节点没有子节点
-				// 删除父节点
-				categoryMapper.deleteByPrimaryKey(id);
-				return true;
-			}
-			return false;
-		}
-	}
-	
-	// 判断父节点是否有其他子节点
-	private boolean parentHasChild(Long parentId){
-		
-		TbContentCategoryExample example = new TbContentCategoryExample();
-		// 添加查询条件
-		Criteria criteria = example.createCriteria();
-		criteria.andParentIdEqualTo(parentId);
-		// 执行查询
-		List<TbContentCategory> list = categoryMapper.selectByExample(example);
-		if(list.size() == 0){
-			return false;
-		}
-		return true;
+	public void deleteContentgory(Long id) {
+		tbContentCategoryMapper.deleteByPrimaryKey(id);
 	}
 
 }

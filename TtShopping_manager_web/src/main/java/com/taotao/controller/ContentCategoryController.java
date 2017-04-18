@@ -59,10 +59,8 @@ public class ContentCategoryController {
 	 * @param id
 	 */
 	@RequestMapping(value="/content/category/delete/")
-	@ResponseBody
-	public boolean deleteContentCategory(Long id){
-		boolean result = contentService.deleteContentgory(id);
-		return result;
+	public void deleteContentCategory(Long id){
+		contentService.deleteContentgory(id);
 	}
 	
 }

@@ -33,6 +33,6 @@ public interface ContentCategoryService {
 	  * 删除内容分类列表
 	  * @param id
 	  */
-	 boolean deleteContentgory(Long id);
+	 void deleteContentgory(Long id);
 	
 }

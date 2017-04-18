@@ -26,11 +26,4 @@
 		</plugin>
 	</plugins>
   </build>
-   <dependencies>
-   	<dependency>
-   		<groupId>com.taotaoShopping</groupId>
-   		<artifactId>TtShopping_manager_pojo</artifactId>
-   		<version>0.0.1-SNAPSHOT</version>
-   	</dependency>
-   </dependencies>
 </project>
