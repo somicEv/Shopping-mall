@@ -7,6 +7,7 @@ public class EasyUIDataGridResult implements Serializable{
 
 	private long total;
 	private List rows;
+	
 	public long getTotal() {
 		return total;
 	}

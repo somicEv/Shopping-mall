@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.taotao.common.pojo.EasyUITreeNode;
 import com.taotao.mapper.TbItemCatMapper;
@@ -12,6 +13,7 @@ import com.taotao.pojo.TbItemCat;
 import com.taotao.pojo.TbItemCatExample;
 import com.taotao.pojo.TbItemCatExample.Criteria;
 import com.taotao.service.ItemCatService;
+
 
 /**
  * 商品分类管理Service
@@ -21,6 +23,7 @@ import com.taotao.service.ItemCatService;
  * @version 1.0
  */
 @Service
+@Transactional(readOnly=false)
 public class ItemCatServiceImpl implements ItemCatService {
 
 	@Autowired
